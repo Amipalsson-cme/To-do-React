@@ -12,17 +12,17 @@ import  List from './components/List'
 
 
 
-
-
 function App( ) {
   return (
 <Container>
-    <Jumbotron fluid >
+
+    <Jumbotron fluid  style={{backgroundColor:'#dfd7ec'}}>
     <h1  style ={{textAlign:'center'}}>Notes</h1>
     </Jumbotron>
+
     <Row>
     <Col  xs={12} md={4}>
-    <Button  className ="mb-4" variant="info" block>New note
+    <Button  className ="mb-4" variant="dark" block>New note
     </Button>
     <List />
     </Col>
