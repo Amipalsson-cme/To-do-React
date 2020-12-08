@@ -1,4 +1,4 @@
-import React , { useState } from 'react'
+import React  from 'react'
 import { getNotes } from '../helpers/noteHelpers'
 import ListGroup from 'react-bootstrap/ListGroup'
 
