@@ -24,7 +24,7 @@ export default class CLock extends React.Component {
     render(){
       return(
         <div>
-            <h4>Welcome the time now is: {this.state.date.toLocaleTimeString()}</h4>
+            <h5><i>Welcome !The time now is: {this.state.date.toLocaleTimeString()}</i></h5>
         </div>
     )
   }

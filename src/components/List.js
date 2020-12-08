@@ -1,9 +1,8 @@
 import React  from 'react'
-import { getNotes } from '../helpers/noteHelpers'
 import ListGroup from 'react-bootstrap/ListGroup'
 
 
-export default function List({selectedNote,setSelectedNote}){
+export default function List({selectedNote,setSelectedNote, notes }){
    
     const onSelectNote =(note) => {
         setSelectedNote(note)
@@ -12,7 +11,7 @@ export default function List({selectedNote,setSelectedNote}){
     return (
      <ListGroup as ="ul">
     
-        {getNotes().map((note,index) =>(
+        {notes.map((note,index) =>(
             <ListGroup.Item 
             active={selectedNote ? note.id ===selectedNote.id: false } 
             onClick={()=> onSelectNote(note)} as="li" >

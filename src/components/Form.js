@@ -1,35 +1,42 @@
-import React, {useState} from 'react'
-import Form from 'react-bootstrap/Form'
-import { createNote, getNotes } from '../helpers/noteHelpers'
+import React, {useState , useEffect } from 'react'
+import BootstrapForm  from 'react-bootstrap/Form'
+import { createNote, getNotes , updateNote } from '../helpers/noteHelpers'
 
 
 
+export default function Form({selectedNote , refreshList}){
+ 
+  const [title,setTitle] = useState('')
 
-export default function F({selectedNote}){
-  console.log(selectedNote)
-  const [title,setTitle] = useState(' ')
+ useEffect(() => {
+   if (selectedNote) setTitle(selectedNote.title)
+ }, [selectedNote])
 
- if (selectedNote) setTitle(selectedNote.title)
 
-  const onChangeTitle =(e) => setTitle(e.target.value)
-  const onSave =(e) => {
+  const onChangeTitle = (e) => setTitle(e.target.value)
+  const onSave = (e) => {
     e.preventDefault()
-    console.log('Saving new note:', title)
+    if (selectedNote){
+      updateNote(selectedNote.id,title)
+         return refreshList()
+     
+
+    }
     createNote(title, '')
-    console.log(getNotes())
+    refreshList()
   }
   return(
-    <Form>
-      <Form.Group>
-        <Form.Control 
+    <BootstrapForm>
+      <BootstrapForm.Group>
+        <BootstrapForm.Control 
         className="mb-4" 
         size="lg" 
-        value={ selectedNote ? selectedNote.title :title} 
+        value={title} 
         onChange={onChangeTitle}/>
     
-      </Form.Group>
+      </BootstrapForm.Group>
       <button onClick={onSave}>Save</button>
-      </Form>
+      </BootstrapForm>
   
   )
 }
