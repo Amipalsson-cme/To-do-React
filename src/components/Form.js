@@ -1,53 +1,35 @@
-import React from 'react'
-import Col from 'react-bootstrap/Col'
-import Button from 'react-bootstrap/Button'
+import React, {useState} from 'react'
 import Form from 'react-bootstrap/Form'
+import { createNote, getNotes } from '../helpers/noteHelpers'
 
 
 
-const  NewNote = ({ setInputText ,todos ,setTodos,inputText}) => {
-    const inputTextHandler =(e) => {
-        console.log (e.target.value);
-        setInputText(e.target.value);
-    }
 
-    const submitTodoHandler = (e) => {
-        e.preventDefault();
-        setTodos([
-            ...todos,{text:  inputText}
-        ])
-        setInputText("")
- }
-    return (
-        <Form>
-          <Form.Row className="align-items-center">
-        <Col xs="auto">
-              <Form.Label  htmlFor="inlineFormInput" srOnly>
-              </Form.Label>
-      <Form.Control
-        className="mb-2"
-        value ={inputText}
-        style={{marginTop:'20px'}}
-        id="inlineFormInput"
-        placeholder="Insert Note"
-        onChange ={inputTextHandler}
-        
-      />
-      </Col>
+export default function F({selectedNote}){
+  console.log(selectedNote)
+  const [title,setTitle] = useState(' ')
 
+ if (selectedNote) setTitle(selectedNote.title)
 
-      <Col xs="auto">
-      <Button onClick = {submitTodoHandler} type="submit" className="mb-2" style={{marginTop:'20px'}}>
-        Submit
-      </Button>
-    </Col>
-  </Form.Row>
-</Form>
-    )
-
-
+  const onChangeTitle =(e) => setTitle(e.target.value)
+  const onSave =(e) => {
+    e.preventDefault()
+    console.log('Saving new note:', title)
+    createNote(title, '')
+    console.log(getNotes())
+  }
+  return(
+    <Form>
+      <Form.Group>
+        <Form.Control 
+        className="mb-4" 
+        size="lg" 
+        value={ selectedNote ? selectedNote.title :title} 
+        onChange={onChangeTitle}/>
+    
+      </Form.Group>
+      <button onClick={onSave}>Save</button>
+      </Form>
+  
+  )
 }
-
-export default NewNote ;
-
-

@@ -3,8 +3,8 @@ import { getNotes } from '../helpers/noteHelpers'
 import ListGroup from 'react-bootstrap/ListGroup'
 
 
-export default function List(){
-    const [selectedNote, setSelectedNote] =useState(undefined)
+export default function List({selectedNote,setSelectedNote}){
+   
     const onSelectNote =(note) => {
         setSelectedNote(note)
         }
