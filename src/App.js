@@ -17,6 +17,7 @@ import {getNotes} from './helpers/noteHelpers'
 function App() {
   const [selectedNote, setSelectedNote] =useState(undefined)
   const [notes,setNotes] =useState([])
+  const [title, setTitle] =useState('')
 
   useEffect (()=> {
     const notes = getNotes()
@@ -24,9 +25,12 @@ function App() {
   },[])
 
   const refreshList = ()=> {
+    setSelectedNote(undefined)
     const notes = getNotes()
     setNotes([...notes])
   }
+
+  const onClickNewNote = () => setSelectedNote (undefined)
 
   return (
 <Container>
@@ -38,13 +42,15 @@ function App() {
     <Row>
     <Col  xs={12} md={4}>
  
-    <Button  className ="mb-4" variant="dark" block>New note
+    <Button onClick={onClickNewNote} className ="mb-4" variant="dark" block>New note
     </Button>
     <List notes={notes}selectedNote={selectedNote} setSelectedNote={setSelectedNote} />
     </Col>
      <Col xs={12} md={8}>
    {/*<AddNote />*/}
-   <Form refreshList={refreshList} selectedNote={selectedNote}/>
+   <Form 
+   refreshList={refreshList} 
+   selectedNote={selectedNote} setSelectedNote={setSelectedNote}/>
   
     </Col>
     <Col  xs={12} md={8}>
