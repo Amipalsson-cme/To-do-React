@@ -23,6 +23,8 @@ export function createNote (title, body) {
     }
    
 notes.push(note)
+const jsonNoteArray = JSON.stringify(notes)
+localStorage.setItem('notes',jsonNoteArray)
 return note
 }
 

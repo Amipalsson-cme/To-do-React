@@ -17,7 +17,7 @@ import {getNotes} from './helpers/noteHelpers'
 function App() {
   const [selectedNote, setSelectedNote] =useState(undefined)
   const [notes,setNotes] =useState([])
-  const [title, setTitle] =useState('')
+  
 
   useEffect (()=> {
     const notes = getNotes()
@@ -31,6 +31,9 @@ function App() {
   }
 
   const onClickNewNote = () => setSelectedNote (undefined)
+ 
+ 
+  
 
   return (
 <Container>
