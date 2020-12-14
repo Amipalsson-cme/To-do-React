@@ -6,7 +6,6 @@ import Row from 'react-bootstrap/Row'
 import Button from 'react-bootstrap/Button'
 import Col from 'react-bootstrap/Col'
 import Jumbotron from 'react-bootstrap/Jumbotron'
-//import AddNote from './components/InputNote'
 import List from './components/List'
 import Form from './components/Form'
 import Clock from './components/Clock'
@@ -32,8 +31,7 @@ function App() {
 
   const onClickNewNote = () => setSelectedNote (undefined)
  
- 
-  
+
 
   return (
 <Container>

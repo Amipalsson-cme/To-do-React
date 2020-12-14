@@ -4,18 +4,16 @@ R:read (get) a note
 U:update a note
 D:delete a note
 */
- 
-
-
-const notes =[
-{  id: 1,   title: 'Note 1' , body:' ' },
-{ id:  2,  title: 'Note 2', body: 'Empty '},
-{ id: 3 , title: 'Note 3', body : ' Something'},
-{ id: 4, title: 'Note 4', body: ' '}
-]
+ // getting notes from localStorage
+export function getNotes(){
+    const notes =  localStorage.getItem('notes')
+    const parsedNotes =JSON.parse(notes)
+    return parsedNotes
+      } 
 
 //  works!!
 export function createNote (title, body) {
+    const notes = getNotes()
     const note = {
         id: Date.now(),
         title,
@@ -30,16 +28,15 @@ return note
 
 //  works!
 export function getNote(id){
+    const notes = getNotes()
     return notes.find(note => note.id === id)
 }
 
-// works!
-export function getNotes(){
-    return notes
 
-} 
+
 // works!!
 export function updateNote(id, title, body){
+    const notes =getNotes()
     const indexToUpdate = notes.findIndex((note) => note.id === id)
     const note ={
         id,
@@ -48,15 +45,20 @@ export function updateNote(id, title, body){
     }
     notes.splice(indexToUpdate, 1 )
     notes.splice (0, 0 , note)
-    return notes
+    const jsonNoteArray = JSON.stringify(notes)
+    localStorage.setItem('notes',jsonNoteArray)
+    return note
 
 }
 
 // works!
 export function deleteNote (id) {
+    const notes = getNotes()
     const indexToDelete= notes.findIndex(
     (note)  => note.id === id)
     if (indexToDelete>= 0)notes.splice( indexToDelete, 1 , )
+    const jsonNoteArray = JSON.stringify(notes)
+    localStorage.setItem('notes',jsonNoteArray)
     return true 
     
 }
