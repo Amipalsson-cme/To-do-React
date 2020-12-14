@@ -4,9 +4,18 @@ R:read (get) a note
 U:update a note
 D:delete a note
 */
+
+function initializeNotes() {
+    localStorage.setItem('notes', JSON.stringify([]))
+    return []
+
+}
  // getting notes from localStorage
 export function getNotes(){
     const notes =  localStorage.getItem('notes')
+    if (!notes) {
+        notes = initializeNotes()
+    }
     const parsedNotes =JSON.parse(notes)
     return parsedNotes
       } 
