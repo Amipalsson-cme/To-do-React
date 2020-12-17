@@ -14,12 +14,16 @@ function initializeNotes() {
 export function getNotes(){
     const notes =  localStorage.getItem('notes')
     if (!notes) {
+        // eslint-disable-next-line no-const-assign
         notes = initializeNotes()
-    }
+        
+    } 
+    
     const parsedNotes =JSON.parse(notes)
     return parsedNotes
-      } 
+} 
 
+      
 //  works!!
 export function createNote (title, body) {
     const notes = getNotes()

@@ -10,9 +10,11 @@ export default function Form({selectedNote ,setSelectedNote,  refreshList}){
  
   const [title,setTitle] = useState('')
   const [isSaved,setIsSaved] = useState(false) 
+  const [onDeleted,deletedNote] = useState(false)
   const [body,setBody] = useState('')
 
  useEffect(() => {
+   // eslint-disable-next-line no-sequences
    if (selectedNote)  return setTitle(selectedNote.title),setBody(selectedNote.body)
    setTitle('')
    setBody('')
@@ -44,6 +46,8 @@ export default function Form({selectedNote ,setSelectedNote,  refreshList}){
     deleteNote(id)
     refreshList()
     setTitle(' ')
+    deletedNote(true)
+    setTimeout(() => deletedNote(false), 3000)
     
   
   }
@@ -66,7 +70,9 @@ export default function Form({selectedNote ,setSelectedNote,  refreshList}){
       </BootstrapForm.Group>
       <Button variant = "success" style={{ marginRight : 10}} onClick={onSave}>Save</Button>
       {selectedNote && <Button variant ="danger" onClick={onDelete}>Delete</Button>}
+      {onDeleted && <Alert variant="danger" style = {{marginTop : '30px'}}><p>Deleted!</p></Alert>}
       {isSaved && <Alert variant="success" style ={{marginTop : '30px'}}><p>Saved!</p></Alert>}
+    
       </BootstrapForm>
   
   )

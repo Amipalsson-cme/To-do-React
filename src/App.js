@@ -1,6 +1,6 @@
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import React ,{ useState ,useEffect}from 'react'
+import React ,{ useState ,useEffect} from 'react'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Button from 'react-bootstrap/Button'
@@ -13,12 +13,12 @@ import {getNotes} from './helpers/noteHelpers'
 
 
 
+
 function App() {
   const [selectedNote, setSelectedNote] =useState(undefined)
   const [notes,setNotes] =useState([])
   
-
-  useEffect (()=> {
+useEffect (()=> {
     const notes = getNotes()
     setNotes(notes)
   },[])
@@ -39,16 +39,15 @@ function App() {
     <Jumbotron fluid  style={{backgroundColor:'lightblue'}}>
     <h1  style ={{textAlign:'center'}}>Notes</h1>
     </Jumbotron>
-
+ 
     <Row>
     <Col  xs={12} md={4}>
- 
+
     <Button onClick={onClickNewNote} className ="mb-4" variant="dark" block>New note
     </Button>
     <List notes={notes}selectedNote={selectedNote} setSelectedNote={setSelectedNote} />
     </Col>
      <Col xs={12} md={8}>
-   {/*<AddNote />*/}
    <Form 
    refreshList={refreshList} 
    selectedNote={selectedNote} setSelectedNote={setSelectedNote}/>
@@ -61,7 +60,6 @@ function App() {
     </Col>
     </Row>
 
-  
 </Container>
   );
 }
