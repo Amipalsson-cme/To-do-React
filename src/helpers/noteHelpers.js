@@ -1,16 +1,10 @@
-/*
-C:create a note 
-R:read (get) a note
-U:update a note
-D:delete a note
-*/
-
+//localstorage
 function initializeNotes() {
     localStorage.setItem('notes', JSON.stringify([]))
     return []
 
 }
- // getting notes from localStorage
+
 export function getNotes(){
     const notes =  localStorage.getItem('notes')
     if (!notes) {
@@ -22,9 +16,7 @@ export function getNotes(){
     const parsedNotes =JSON.parse(notes)
     return parsedNotes
 } 
-
-      
-//  works!!
+//create Note 
 export function createNote (title, body) {
     const notes = getNotes()
     const note = {
@@ -39,7 +31,6 @@ localStorage.setItem('notes',jsonNoteArray)
 return note
 }
 
-//  works!
 export function getNote(id){
     const notes = getNotes()
     return notes.find(note => note.id === id)
@@ -47,7 +38,7 @@ export function getNote(id){
 
 
 
-// works!!
+// update a note
 export function updateNote(id, title, body){
     const notes =getNotes()
     const indexToUpdate = notes.findIndex((note) => note.id === id)
@@ -64,7 +55,7 @@ export function updateNote(id, title, body){
 
 }
 
-// works!
+// delete note
 export function deleteNote (id) {
     const notes = getNotes()
     const indexToDelete= notes.findIndex(

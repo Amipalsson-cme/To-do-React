@@ -11,9 +11,6 @@ import Form from './components/Form'
 import Clock from './components/Clock'
 import {getNotes} from './helpers/noteHelpers'
 
-
-
-
 function App() {
   const [selectedNote, setSelectedNote] =useState(undefined)
   const [notes,setNotes] =useState([])
